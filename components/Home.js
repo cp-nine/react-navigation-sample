@@ -18,6 +18,11 @@ export default class Home extends Component {
     title: 'Codepool App'
   };
 
+  // open drawer tab
+  _openDrawer = () => {
+    this.props.navigation.openDrawer();
+  }
+
   _onTextChanged = (event) => {
     this.setState({ data: event.nativeEvent.text } );
   }
@@ -67,7 +72,7 @@ export default class Home extends Component {
 
         <Button
           title="About" 
-          onPress={() => this._onPress()} />
+          onPress={() => this._openDrawer()} />
         
         <Course course={this.state.course} onChange={this._isChanged}></Course>
       </View>

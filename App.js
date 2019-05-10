@@ -1,23 +1,51 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
-import {createStackNavigator, createAppContainer} from 'react-navigation';
-import Home from './components/Home';
-import About from './components/About';
-import Clases from './components/Clases';
+import {
+  createStackNavigator, 
+  createDrawerNavigator, 
+  createBottomTabNavigator, 
+  createSwitchNavigator, 
+  createAppContainer
+} from 'react-navigation';
+import HomeScreen from './components/home/HomeScreen';
+import Profile from './components/profile/Profile';
+import Portfolio from './components/portfolio/Portfolio';
+import Login from './components/auth/Login';
 
-
+// Stack Navigator
 const RootStack = createStackNavigator({
-  Clases: {screen: Clases},
-  About: {screen: About},
+  Home: {screen: HomeScreen},
+  Portfolio: {screen: Portfolio},
+  Profile: {screen: Profile}
 });
 
-const App = createAppContainer(RootStack);
+// Bottom Tab Navigator
+const RootTab = createBottomTabNavigator({
+  Home: {screen: HomeScreen},
+  Portfolio: {screen: Portfolio},
+  Profile: {screen: Profile}
+});
+
+// Bottom Tab Navigator
+const RootDrawer = createDrawerNavigator(
+  {
+    Stacks: {
+      screen: RootStack,
+      navigationOptions: {}
+    },
+    Tabs: {
+      screen: RootTab,
+      navigationOptions: {}
+    },
+  }
+);
+
+const RootSwitch = createSwitchNavigator(
+  {
+    Login: {screen: Login},
+    App: {screen: RootDrawer}
+  }
+);
+
+const App = createAppContainer(RootSwitch);
 
 export default App;

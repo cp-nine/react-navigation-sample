@@ -43,6 +43,8 @@ export default class Course extends Component {
 
           {listCourse}
         </Picker>
+
+        <Text>Course Page</Text>
       </View>
     );
   }
